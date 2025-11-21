@@ -1,0 +1,15 @@
+{
+  "haveError": "Đã xảy ra lỗi. Vui lòng thử lại sau",
+  "errorOnRequest": "Đã xảy ra lỗi khi gửi yêu cầu",
+  "errorOnHandle": "Đã xảy ra lỗi khi xử lý dữ liệu",
+  "serverError": "Lỗi máy chủ",
+  "errorNetwork": "Lỗi kết nối! Vui lòng kiểm tra kết nối của bạn",
+  "errorGetPermission": "Đã xảy ra lỗi khi kiểm tra quyền ứng dụng",
+  "tokenNotValid": "Token không hợp lệ hoặc đã hết hạn",
+  "success": "Thành công",
+  "failed": "Thất bại",
+  "limitNumberConstraint": "Giới hạn phải là một số tuân thủ ràng buộc đã chỉ định",
+  "notFound": "Không tìm thấy",
+  "invalid": "không hợp lệ",
+  "alreadyExists": "Đã tồn tại"
+}

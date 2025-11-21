@@ -1,0 +1,15 @@
+{
+  "haveError": "An error occurred. Please try again later",
+  "errorOnRequest": "An error occurred while submitting the request",
+  "errorOnHandle": "An error occurred while processing data",
+  "serverError": "Server error",
+  "errorNetwork": "Connection errors! Please check the connection again",
+  "errorGetPermission": "Error while checking application permissions",
+  "tokenNotValid": "Token is not valid or expired",
+  "success": "Success",
+  "failed": "Failed",
+  "alreadyExists": "Already exists",
+  "limitNumberConstraint": "Limit must be a number conforming to the specified constraints",
+  "notFound": "Not found",
+  "invalid": "Invalid"
+}
