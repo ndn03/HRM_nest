@@ -35,11 +35,11 @@ services:
     container_name: hrm-mysql                      # Tên container MySQL
     restart: unless-stopped                        # Tự động khởi động lại khi bị dừng
     environment:
-      # Cấu hình database và user
-      MYSQL_ROOT_PASSWORD: 123456                 # Mật khẩu root MySQL  
-      MYSQL_DATABASE: hrm_nest                    # Tên database chính cho ứng dụng
-      MYSQL_USER: hrm_user                        # User ứng dụng kết nối database
-      MYSQL_PASSWORD: 123456                      # Mật khẩu user ứng dụng
+      # Cấu hình database và user - THAY ĐỔI MẬT KHẨU TRONG MÔI TRƯỜNG PRODUCTION
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # Sử dụng biến môi trường
+      MYSQL_DATABASE: ${MYSQL_DATABASE}            # Tên database từ biến môi trường
+      MYSQL_USER: ${MYSQL_USER}                    # User từ biến môi trường
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}            # Mật khẩu từ biến môi trường
     ports:
       - "3308:3306"                               # Ánh xạ port 3308 (host) -> 3306 (container)
     volumes:
@@ -50,7 +50,7 @@ services:
       - .docker/db/sql:/docker-entrypoint-initdb.d # Script khởi tạo database ban đầu
     healthcheck:
       # Kiểm tra MySQL đã sẵn sàng nhận kết nối chưa
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p123456"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 30s                               # Kiểm tra mỗi 30 giây
       timeout: 10s                                # Timeout sau 10 giây
       retries: 5                                  # Thử lại 5 lần nếu fail

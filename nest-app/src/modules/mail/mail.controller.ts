@@ -1,13 +1,14 @@
 import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { MailService } from './mail.service';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 import { Auth } from '@common/decorators/auth.decorator';
 import { ACCESS } from '@configs/role.config';
+import { ApiOperation } from '@nestjs/swagger';
 
-@Controller('mail')
+@ApiTags('Mailer')
+@Controller('v1/mail')
 export class MailController {
   constructor(private readonly mailService: MailService) {}
-
   @Post('send-mailer')
   @ApiOperation({
     summary: 'Send a test email to a specified address',
@@ -15,17 +16,19 @@ export class MailController {
   })
   @HttpCode(HttpStatus.OK)
   @Auth(ACCESS.SEND_MAIL_TEST)
+  @ApiOperation({ summary: 'Send mailer (for testing)' })
   async sendMailer() {
     const res = await this.mailService.sendMailer({
-      to: 'nguyenducnhanh2003@gmail.com',
-      subject: 'Forgot password: User Password Recovery',
-      template: 'forgot-password',
+      to: '<recipient@example.com>',
+      subject: 'Test Email from NestJS',
+      template: 'forget-password', // Sử dụng template 'forget-password' đã tạo trong thư mục 'templates'
       context: {
-        name: 'Nguyen Van A',
-        otp: '123456',
+        email: 'account@gmail.com',
+
+        password: 'body.password',
+        username: 'NguyenVanA',
       },
     });
-
-    return { message: 'general.success', data: res };
+    return { message: 'Send mail success.', data: res };
   }
 }
